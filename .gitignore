@@ -1,0 +1,6 @@
+# Scratch & temporary files
+test_pitch.pptx
+*.tmp
+*.log
+.DS_Store
+Thumbs.db

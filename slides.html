@@ -1,0 +1,2782 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MV "LẠ LÙNG" - Pitch Deck & Art Direction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cool-bg: #F9F9F6;
+            --cool-slate: #E5E5E5;
+            --cool-accent: #7B8B8E;
+            --cool-text-dark: #1E282A;
+            --cool-text-muted: #5A6668;
+            --cool-card: #F0F3F4;
+
+            --warm-bg: #FFFDF9;
+            --warm-gold: #E4A853;
+            --warm-orange: #D98C61;
+            --warm-brown: #8B6B58;
+            --warm-card: #FAF4EC;
+
+            --dark-bg: #14181A;
+            --dark-card: #1E2326;
+            --dark-text: #FFFFFF;
+            --dark-muted: #A0A9AD;
+
+            --font-head: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: #0D1011;
+            color: var(--cool-text-dark);
+            font-family: var(--font-body);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 16:9 Slide Canvas Container */
+        .presentation-deck {
+            position: relative;
+            width: 100vw;
+            height: 56.25vw; /* 16:9 aspect */
+            max-height: 100vh;
+            max-width: 177.78vh; /* 16:9 aspect */
+            box-shadow: 0 25px 70px rgba(0,0,0,0.55);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Slide Core */
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: scale(0.99);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4.2% 5.2% 3.2% 5.2%;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            z-index: 10;
+        }
+
+        /* Themes */
+        .slide.theme-cool {
+            background-color: var(--cool-bg);
+            color: var(--cool-text-dark);
+        }
+        .slide.theme-warm {
+            background-color: var(--warm-bg);
+            color: var(--cool-text-dark);
+        }
+        .slide.theme-dark {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* Layout Grid */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1.18fr 0.82fr;
+            gap: 48px;
+            height: 91%;
+            align-items: center;
+        }
+
+        .col-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            text-align: left;
+        }
+
+        .col-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Typography & Badges */
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: var(--cool-accent);
+        }
+        .theme-warm .section-tag {
+            color: var(--warm-gold);
+        }
+
+        .slide-title {
+            font-family: var(--font-head);
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            color: var(--cool-text-dark);
+        }
+        .theme-dark .slide-title {
+            color: #fff;
+        }
+
+        .slide-headline {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--cool-accent);
+            margin-bottom: 18px;
+        }
+        .theme-warm .slide-headline {
+            color: var(--warm-brown);
+        }
+
+        .slide-desc {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 400;
+            color: var(--cool-text-dark);
+            margin-bottom: 16px;
+        }
+
+        .slide-quote {
+            font-family: var(--font-head);
+            font-size: 1.12rem;
+            font-weight: 600;
+            line-height: 1.6;
+            border-left: 3px solid var(--warm-gold);
+            padding-left: 20px;
+            margin: 18px 0;
+            color: var(--warm-brown);
+            font-style: italic;
+        }
+
+        /* Cover Slide */
+        .slide-cover-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(14px) brightness(0.5);
+            transform: scale(1.08);
+            z-index: 1;
+        }
+        .slide-cover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(12,16,18,0.85) 0%, rgba(18,24,26,0.75) 100%);
+            z-index: 2;
+        }
+        .cover-layout {
+            position: relative;
+            z-index: 3;
+            align-items: center;
+        }
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: 5.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin: 10px 0 6px 0;
+            line-height: 1.0;
+        }
+        .hero-sub {
+            font-family: var(--font-head);
+            font-size: 1.45rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--cool-slate);
+            margin-bottom: 14px;
+        }
+        .hero-artist {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--warm-gold);
+            margin-bottom: 18px;
+        }
+        .hero-desc {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.82);
+            max-width: 600px;
+            margin-bottom: 22px;
+        }
+        .hero-meta-grid {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .meta-pill {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #fff;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .meta-pill span {
+            font-family: var(--font-head);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--warm-gold);
+            letter-spacing: 0.08em;
+        }
+        .badge-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(228, 168, 83, 0.2);
+            border: 1px solid rgba(228, 168, 83, 0.4);
+            border-radius: 4px;
+            color: var(--warm-gold);
+            font-family: var(--font-head);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .cover-frame {
+            height: 480px !important;
+            width: 100% !important;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6) !important;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Bullets Stack */
+        .bullets-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 12px 0;
+        }
+        .bullet-block {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .bullet-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cool-accent);
+            margin-top: 7px;
+            flex-shrink: 0;
+        }
+        .theme-warm .bullet-dot {
+            background: var(--warm-gold);
+        }
+        .bullet-block strong {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+            margin-bottom: 4px;
+        }
+        .bullet-block p {
+            font-size: 0.94rem;
+            line-height: 1.55;
+            color: var(--cool-text-muted);
+        }
+
+        /* Images & Magazine Frames */
+        .img-frame {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+            background: #eaeaea;
+        }
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+        }
+        .img-frame.single {
+            width: 100%;
+            height: 480px;
+        }
+        .img-caption {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            background: rgba(15, 20, 22, 0.78);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: var(--font-head);
+            letter-spacing: 0.05em;
+        }
+        .dual-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 480px;
+            width: 100%;
+        }
+        .dual-vertical .img-frame.half {
+            height: 232px;
+            width: 100%;
+        }
+        .dual-horizontal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+            height: 480px;
+        }
+        .dual-horizontal .img-frame.half {
+            height: 480px;
+            width: 100%;
+        }
+        .triple-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            width: 100%;
+            height: 480px;
+        }
+        .triple-gallery .img-frame.triple {
+            height: 480px;
+            width: 100%;
+        }
+
+        /* Scene Layout Styles */
+        .scene-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .scene-pill {
+            font-family: var(--font-head);
+            font-size: 0.9rem;
+            font-weight: 800;
+            background: var(--cool-text-dark);
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 4px;
+            letter-spacing: 0.06em;
+        }
+        .theme-warm .scene-pill {
+            background: var(--warm-brown);
+        }
+        .scene-tc {
+            font-family: var(--font-head);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cool-accent);
+        }
+        .sub-label {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cool-accent);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .theme-warm .sub-label {
+            color: var(--warm-gold);
+        }
+        .scene-lyric-box {
+            background: var(--cool-card);
+            border-left: 3px solid var(--cool-accent);
+            padding: 12px 18px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 16px;
+        }
+        .theme-warm .scene-lyric-box {
+            background: var(--warm-card);
+            border-left-color: var(--warm-gold);
+        }
+        .scene-lyric {
+            font-family: var(--font-head);
+            font-size: 1.12rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+        }
+        .scene-action-box, .scene-camera-box {
+            margin-bottom: 16px;
+        }
+        .scene-action {
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: var(--cool-text-dark);
+        }
+        .scene-camera {
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: var(--cool-text-muted);
+        }
+
+        /* Info Grid 2x2 */
+        .info-grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 22px 0;
+        }
+        .info-card {
+            background: var(--cool-card);
+            border: 1px solid var(--cool-slate);
+            border-radius: 8px;
+            padding: 22px 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .info-label {
+            font-family: var(--font-head);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cool-accent);
+        }
+        .info-val {
+            font-family: var(--font-head);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+        }
+        .quote-bar {
+            margin-top: 14px;
+            padding: 18px 24px;
+            background: #fff;
+            border-left: 4px solid var(--cool-accent);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+        }
+        .lyric-tag {
+            font-family: var(--font-head);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cool-accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .lyric-focus {
+            font-family: var(--font-head);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--cool-text-dark);
+            margin-bottom: 6px;
+        }
+        .lyric-desc {
+            font-size: 0.98rem;
+            color: var(--cool-text-muted);
+            line-height: 1.6;
+        }
+
+        /* 3 Pillars */
+        .pillars-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 18px 0;
+        }
+        .pillar-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: var(--cool-card);
+            border: 1px solid var(--cool-slate);
+            border-radius: 8px;
+            padding: 16px 22px;
+        }
+        .pillar-num {
+            font-family: var(--font-head);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--cool-accent);
+        }
+        .pillar-content h4 {
+            font-family: var(--font-head);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+            margin-bottom: 4px;
+        }
+        .pillar-content p {
+            font-size: 0.92rem;
+            color: var(--cool-text-muted);
+            line-height: 1.5;
+        }
+
+        /* Flow / Timeline */
+        .flow-track {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 22px 0;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--cool-card);
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--cool-slate);
+        }
+        .step-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--cool-accent);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: var(--font-head);
+        }
+        .theme-warm .step-circle {
+            background: var(--warm-gold);
+        }
+        .step-text strong {
+            display: block;
+            font-family: var(--font-head);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+        }
+        .step-text span {
+            font-size: 0.78rem;
+            color: var(--cool-text-muted);
+        }
+        .flow-desc {
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: var(--cool-text-muted);
+            margin-top: 14px;
+        }
+
+        /* Color Tiers */
+        .color-tiers-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .color-tier-card {
+            background: var(--cool-card);
+            border-left: 4px solid var(--cool-accent);
+            padding: 14px 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .color-tier-card.tier-1 {
+            background: var(--warm-card);
+            border-left-color: var(--warm-gold);
+        }
+        .color-tier-card.tier-2 {
+            background: #F4F2EF;
+            border-left-color: #B5A89B;
+        }
+        .color-tier-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .color-tier-badge {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+            background: rgba(0,0,0,0.06);
+        }
+        .color-tier-codes {
+            font-family: var(--font-head);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--cool-text-dark);
+        }
+        .color-tier-desc {
+            font-size: 0.88rem;
+            color: var(--cool-text-muted);
+            line-height: 1.5;
+        }
+
+        /* Phase Meta */
+        .phase-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .phase-badge {
+            font-family: var(--font-head);
+            font-size: 0.85rem;
+            font-weight: 800;
+            background: var(--cool-accent);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 4px;
+            letter-spacing: 0.08em;
+        }
+        .theme-warm .phase-badge {
+            background: var(--warm-gold);
+        }
+        .phase-timeline {
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--cool-text-muted);
+        }
+
+        /* Cast badge */
+        .cast-badge-box {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .cast-name {
+            font-family: var(--font-head);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--cool-text-dark);
+        }
+        .cast-age {
+            font-size: 1.05rem;
+            color: var(--cool-text-muted);
+            font-weight: 500;
+        }
+
+        /* The End */
+        .the-end-layout .end-quote {
+            font-family: var(--font-head);
+            font-size: 1.35rem;
+            font-weight: 600;
+            line-height: 1.65;
+            color: var(--warm-brown);
+            margin: 22px 0;
+            border-left: 3px solid var(--warm-gold);
+            padding-left: 20px;
+        }
+        .end-thanks span {
+            font-family: var(--font-head);
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--cool-text-dark);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .end-thanks p {
+            font-size: 0.95rem;
+            color: var(--warm-orange);
+            font-weight: 600;
+        }
+
+        /* Doc ref badge */
+        .doc-ref-badge {
+            font-family: var(--font-head);
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: #8D999B;
+            letter-spacing: 0.05em;
+            margin-top: auto;
+            padding-top: 14px;
+        }
+        .doc-ref-badge.light {
+            color: rgba(255,255,255,0.45);
+        }
+        .theme-dark .doc-ref-badge {
+            color: rgba(255,255,255,0.45);
+        }
+
+        /* Slide Footer */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-head);
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: #9EA8AA;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding-top: 12px;
+            z-index: 5;
+        }
+        .theme-dark .slide-footer {
+            border-top-color: rgba(255,255,255,0.08);
+            color: #6C777C;
+        }
+
+        /* Navigation HUD Controls */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--warm-gold);
+            width: 2.7%;
+            transition: width 0.3s ease;
+            z-index: 9999;
+        }
+
+        .nav-hud {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(16, 22, 25, 0.9);
+            backdrop-filter: blur(14px);
+            padding: 8px 22px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.14);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+            z-index: 999;
+            color: #fff;
+        }
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: background 0.2s;
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .slide-counter {
+            font-family: var(--font-head);
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            min-width: 72px;
+            text-align: center;
+            color: var(--cool-slate);
+        }
+        .drawer-toggle {
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-family: var(--font-head);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            transition: background 0.2s;
+        }
+        .drawer-toggle:hover {
+            background: var(--warm-gold);
+            color: #111;
+        }
+
+        /* Slide Drawer / Overview */
+        .drawer-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 16, 0.96);
+            backdrop-filter: blur(16px);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+        }
+        .drawer-modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .drawer-header h3 {
+            font-family: var(--font-head);
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .drawer-close {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-size: 1.2rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .drawer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 12px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .drawer-item {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .drawer-item:hover, .drawer-item.active-item {
+            background: rgba(228, 168, 83, 0.25);
+            border-color: var(--warm-gold);
+        }
+        .thumb-num {
+            font-family: var(--font-head);
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--warm-gold);
+        }
+        .thumb-title {
+            font-family: var(--font-head);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="presentation-deck">
+        
+        <div class="slide theme-dark active" id="slide-1" data-index="0">
+            
+            <div class="slide-cover-bg" style="background-image: url('assets/cover_rain_blur.jpg');"></div>
+            <div class="slide-cover-overlay"></div>
+            <div class="slide-inner split-layout cover-layout">
+                <div class="col-left" style="z-index: 5;">
+                    <div class="badge-tag">PRODUCTION PITCH DECK • ART DIRECTION</div>
+                    <h1 class="hero-title">LẠ LÙNG</h1>
+                    <h2 class="hero-sub">KẾ HOẠCH SẢN XUẤT MUSIC VIDEO</h2>
+                    <div class="hero-artist">Ca khúc: Lạ Lùng | Ca sĩ & Sáng tác: Vũ</div>
+                    <p class="hero-desc">Một tác phẩm thị giác về tình yêu, ký ức và những khoảng lặng cần được lắng nghe.</p>
+                    <div class="hero-meta-grid">
+                        <div class="meta-pill"><span>THỜI LƯỢNG</span> 04:22</div>
+                        <div class="meta-pill"><span>PHONG CÁCH</span> Indie Cinematic</div>
+                        <div class="meta-pill"><span>ĐỊNH DẠNG</span> 16:9 • 4K</div>
+                    </div>
+                    <div class="doc-ref-badge light">Visual Source: Trang 16 (Bóng lưng người đàn ông nhìn ra cửa sổ mưa đêm)</div>
+                </div>
+                <div class="col-right" style="z-index: 5;">
+                    <div class="img-frame cover-frame">
+                        <img src="assets/cover_rain_window_raw.jpg" alt="LẠ LÙNG" loading="lazy">
+                        <span class="img-caption">Trang 16 • Khung hình mở đầu</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 01 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-2" data-index="1">
+            
+            <div class="slide-inner typo-info-layout">
+                <div class="section-tag">01. TỔNG QUAN TÁC PHẨM</div>
+                <h2 class="slide-title">THÔNG TIN BÀI HÁT</h2>
+                <p class="slide-headline">Bản tình ca Indie Pop chạm đến trái tim hàng triệu người nghe</p>
+                <div class="info-grid-2x2">
+                    
+                <div class="info-card">
+                    <span class="info-label">Sáng tác</span>
+                    <span class="info-val">Vũ (Hoàng Thái Vũ) - 2014</span>
+                </div>
+            
+                <div class="info-card">
+                    <span class="info-label">Phát hành</span>
+                    <span class="info-val">24/12/2016 (Mùa đông)</span>
+                </div>
+            
+                <div class="info-card">
+                    <span class="info-label">Thể loại</span>
+                    <span class="info-val">Indie Pop, Pop Ballad</span>
+                </div>
+            
+                <div class="info-card">
+                    <span class="info-label">Đơn vị / Nhãn</span>
+                    <span class="info-val">Lunatic Co. / WM Vietnam</span>
+                </div>
+            
+                </div>
+                <div class="quote-bar">
+                    <div class="lyric-focus-wrapper">
+                        <span class="lyric-tag">CA TỪ TIÊU BIỂU</span>
+                        <p class="lyric-focus">“Kìa màn đêm hiu hắt mang tên em...”</p>
+                    </div>
+                    <p class="lyric-desc">Tác phẩm được khắc họa như một bản độc thoại tự sự mộc mạc của Vũ, mang giai điệu hoài niệm nhẹ nhàng nhưng day dứt khôn nguôi.</p>
+                </div>
+                <div class="doc-ref-badge">Visual Strategy: Typography trọng tâm (Không dùng ảnh)</div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 02 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-3" data-index="2">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">01. TỔNG QUAN TÁC PHẨM</div>
+                    <h2 class="slide-title">LÝ DO LỰA CHỌN BÀI HÁT</h2>
+                    <p class='slide-headline'>Nội dung giàu cảm xúc & Dễ dàng khơi gợi sự đồng cảm tự nhiên</p>
+                    <blockquote class='slide-quote'>Một giai điệu sinh ra để được kể bằng ánh mắt, sự tĩnh lặng và những khoảng không gian trống.</blockquote>
+                    <p class='slide-desc'>Bài hát không ồn ào mà đi thẳng vào những ngõ ngách cảm xúc chân thực nhất của tình yêu. Ca từ giàu chất thơ mở ra không gian điện ảnh đa tầng về tình cảm, ký ức và sự đổi thay tinh tế của con người theo năm tháng.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 30 (Cánh đồng nắng vàng - ẩn dụ cho cảm xúc mộc mạc)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/field_golden.jpg" alt="LÝ DO LỰA CHỌN BÀI HÁT" loading="lazy">
+                        <span class="img-caption">Trang 30 (Cánh đồng nắng vàng - ẩn dụ cho cảm xúc mộc mạc)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 03 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-4" data-index="3">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">01. TỔNG QUAN TÁC PHẨM</div>
+                    <h2 class="slide-title">MỤC TIÊU SÁNG TẠO</h2>
+                    <p class="slide-headline">Ba trụ cột cảm xúc định hình linh hồn tác phẩm</p>
+                    <div class="pillars-stack">
+                        
+                <div class="pillar-card">
+                    <div class="pillar-num">01</div>
+                    <div class="pillar-content">
+                        <h4>Tạo & Lan tỏa cảm xúc</h4>
+                        <p>Đưa người xem đi qua từng biên độ: say mê thuở đầu, trăn trở hoài nghi và sự tiếc nuối sâu lắng.</p>
+                    </div>
+                </div>
+            
+                <div class="pillar-card">
+                    <div class="pillar-num">02</div>
+                    <div class="pillar-content">
+                        <h4>Truyền tải thông điệp</h4>
+                        <p>Nhắc nhở mỗi người hãy biết trân trọng những khoảnh khắc đời thường và thấu hiểu người bên cạnh.</p>
+                    </div>
+                </div>
+            
+                <div class="pillar-card">
+                    <div class="pillar-num">03</div>
+                    <div class="pillar-content">
+                        <h4>Khơi gợi đồng cảm</h4>
+                        <p>Giúp mỗi người xem nhận thấy một mảnh vỡ ký ức và bóng hình của chính mình trong từng thước phim.</p>
+                    </div>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 15 (Không gian căn hộ ấm cúng - lát cắt đời thường)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/apt_warm.jpg" alt="MỤC TIÊU SÁNG TẠO" loading="lazy">
+                        <span class="img-caption">Trang 15 (Không gian căn hộ ấm cúng - lát cắt đời thường)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 04 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-5" data-index="4">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">02. Ý TƯỞNG SÁNG TẠO</div>
+                    <h2 class="slide-title">CHỦ ĐỀ & THÔNG ĐIỆP CHỦ ĐẠO</h2>
+                    <p class='slide-headline'>Chủ đề: Tình yêu, nỗi nhớ và sự chuyển biến cảm xúc giữa hai người</p>
+                    <blockquote class='slide-quote'>“Hãy trân trọng tình yêu và những khoảnh khắc bên nhau, bởi đôi khi khi nhận ra sự quan trọng của một người thì mọi thứ đã trở thành quá khứ.”</blockquote>
+                    <p class='slide-desc'>Tình yêu không mất đi vì những biến cố lớn lao, mà thường phai nhạt bởi sự im lặng và những thói quen không còn được sẻ chia.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 19 Nửa dưới (Ánh nắng chiều chiếu vào quán cafe vắng)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_sunlight.jpg" alt="CHỦ ĐỀ & THÔNG ĐIỆP CHỦ ĐẠO" loading="lazy">
+                        <span class="img-caption">Trang 19 Nửa dưới (Ánh nắng chiều chiếu vào quán cafe vắng)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 05 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-6" data-index="5">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">02. Ý TƯỞNG SÁNG TẠO</div>
+                    <h2 class="slide-title">TÓM TẮT CÂU CHUYỆN</h2>
+                    <p class='slide-headline'>Khi tình yêu dần biến thành những thói quen bình dị không tiếng nói</p>
+                    
+                    <p class='slide-desc'>MV xoay quanh một cặp đôi đã đi qua giai đoạn nồng nhiệt ban đầu. Khi mọi cử chỉ trở thành nếp sống quen thuộc, chàng trai bắt đầu cảm thấy bạn gái không còn yêu mình như trước, dẫn đến những ngộ nhận và khoảng cách vô hình.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 14 (Collage 4 cảnh sinh hoạt căn hộ chung)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/apt_collage.jpg" alt="TÓM TẮT CÂU CHUYỆN" loading="lazy">
+                        <span class="img-caption">Trang 14 (Collage 4 cảnh sinh hoạt căn hộ chung)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 06 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-7" data-index="6">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 01</span>
+                    <span class="phase-timeline">Thời gian: Hiện tại (Thực tại xám lạnh)</span>
+                </div>
+                
+                    <h2 class="slide-title">KHOẢNG CÁCH VÔ HÌNH</h2>
+                    <p class='slide-headline'>Hai người ở bên nhau nhưng thiếu đi sợi dây kết nối</p>
+                    
+                    <p class='slide-desc'>Cùng sinh hoạt trong một không gian căn hộ quen thuộc nhưng mỗi người như thuộc về một thế giới riêng. Những cuộc trò chuyện trở nên ngắt quãng, cử chỉ quan tâm thưa dần. Chàng trai nhìn người yêu và nhận thấy một sự xa lạ khó gọi tên.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 15 (Cảnh 2 người ngồi bàn gỗ đêm tối, xa cách)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/apt_table_cold.jpg" alt="KHOẢNG CÁCH VÔ HÌNH" loading="lazy">
+                        <span class="img-caption">Trang 15 (Cảnh 2 người ngồi bàn gỗ đêm tối, xa cách)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 07 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-8" data-index="7">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 02</span>
+                    <span class="phase-timeline">Thời gian: Hồi ức (Miền nhớ rực nắng)</span>
+                </div>
+                
+                    <h2 class="slide-title">CÔ GÁI CỦA NGÀY XƯA</h2>
+                    <p class='slide-headline'>Ký ức ngọt ngào trở thành hình mẫu mà anh tha thiết muốn tìm lại</p>
+                    
+                    <p class='slide-desc'>Sự im lặng của thực tại đẩy tâm trí chàng trai ngược dòng về những ngày đầu chớm nở. Trong hồi ức, cô gái luôn rạng rỡ, chủ động nắm lấy tay anh, dành cho anh sự nồng nhiệt vẹn nguyên từng phút giây.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 17 Nửa trên (2 người đi bộ dưới nắng vàng, tay trong tay)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/walk_golden.jpg" alt="CÔ GÁI CỦA NGÀY XƯA" loading="lazy">
+                        <span class="img-caption">Trang 17 Nửa trên (2 người đi bộ dưới nắng vàng, tay trong tay)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 08 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-9" data-index="8">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 03</span>
+                    <span class="phase-timeline">Thời gian: Mâu thuẫn bộc phát</span>
+                </div>
+                
+                    <h2 class="slide-title">CỐ TÌM LẠI NHỮNG ĐIỀU ĐÃ QUA</h2>
+                    <p class='slide-headline'>Kỳ vọng đối diện thực tế: Thất vọng tích tụ thành hố sâu</p>
+                    
+                    <p class='slide-desc'>Chàng trai chủ động đưa cô gái trở lại quán ăn kỷ niệm xưa, mong tìm lại hơi ấm ngày cũ. Nhưng cô gái mệt mỏi sau giờ làm, chỉ biết cúi đầu check tin nhắn điện thoại. Sự thất vọng dâng trào trong mắt chàng trai khi mọi nỗ lực đều trở nên lệch nhịp.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 20 (Cảnh quán cafe tối, cô gái xem điện thoại, nam nhìn cô)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_phone.jpg" alt="CỐ TÌM LẠI NHỮNG ĐIỀU ĐÃ QUA" loading="lazy">
+                        <span class="img-caption">Trang 20 (Cảnh quán cafe tối, cô gái xem điện thoại, nam nhìn cô)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 09 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-10" data-index="9">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 04</span>
+                    <span class="phase-timeline">Thời gian: Điểm lặng (Hố sâu ngăn cách)</span>
+                </div>
+                
+                    <h2 class="slide-title">TƯỞNG CHỪNG ĐÃ MẤT NHAU</h2>
+                    <p class='slide-headline'>Hai cơ thể cạnh bên nhưng hai tâm hồn ở hai thế giới</p>
+                    
+                    <p class='slide-desc'>Hai người cùng bước đi trên con đường đêm quen thuộc nhưng bóng dáng tách rời. Chàng trai chìm sâu vào niềm tin cay đắng rằng tình yêu đã hoàn toàn biến mất, trong khi cô gái mang theo những áp lực và tổn thương không thể cất lời.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 17 Nửa dưới (2 người đi bộ ban đêm, ánh sáng lạnh, xa cách)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/walk_night.jpg" alt="TƯỞNG CHỪNG ĐÃ MẤT NHAU" loading="lazy">
+                        <span class="img-caption">Trang 17 Nửa dưới (2 người đi bộ ban đêm, ánh sáng lạnh, xa cách)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 10 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-11" data-index="10">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 05</span>
+                    <span class="phase-timeline">Thời gian: Cú chuyển góc nhìn (Perspective Shift)</span>
+                </div>
+                
+                    <h2 class="slide-title">SỰ THẬT TỪ GÓC NHÌN CÔ GÁI</h2>
+                    <p class='slide-headline'>Cô chưa từng hết yêu: Sự lạnh nhạt là những hy sinh thầm lặng</p>
+                    
+                    <p class='slide-desc'>Góc nhìn máy quay đảo chiều hé lộ sự thật cảm động: Cốc nước lẳng lặng đặt trên bàn thực chất là cốc trà gừng giải cảm; màn hình điện thoại là ứng dụng tìm món giải rượu cho bạn trai; bàn tay lỏng lẻo là do kiệt sức vì làm việc chăm lo cho tương lai chung.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 19 Nửa trên (Cận cảnh cặp đôi ngồi quán cafe, ánh sáng ấm áp)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_couple_tender.jpg" alt="SỰ THẬT TỪ GÓC NHÌN CÔ GÁI" loading="lazy">
+                        <span class="img-caption">Trang 19 Nửa trên (Cận cảnh cặp đôi ngồi quán cafe, ánh sáng ấm áp)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 11 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-12" data-index="11">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    
+                <div class="phase-meta">
+                    <span class="phase-badge">GIAI ĐOẠN 06</span>
+                    <span class="phase-timeline">Thời gian: Đoạn kết mở (Open Ending)</span>
+                </div>
+                
+                    <h2 class="slide-title">NGƯỜI THAY ĐỔI CÓ THỂ KHÔNG CHỈ LÀ CÔ</h2>
+                    <p class='slide-headline'>Sự thức tỉnh muộn màng và hy vọng tái sinh tình yêu</p>
+                    
+                    <p class='slide-desc'>Cô gái cũng ngậm ngùi nhớ về chàng trai ngày xưa từng ân cần, lắng nghe. Chiếc áo khoác ấm đắp lên vai trong đêm tĩnh lặng mở ra khoảnh khắc thấu cảm qua bóng phản chiếu trên khung kính. Một kết thúc mở để khán giả tự tìm câu trả lời cho tình yêu của chính mình.</p>
+                    
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 18 Nửa dưới (Cặp đôi ngồi quán ăn ấm áp tựa vào nhau)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/diner_couple_lean.jpg" alt="NGƯỜI THAY ĐỔI CÓ THỂ KHÔNG CHỈ LÀ CÔ" loading="lazy">
+                        <span class="img-caption">Trang 18 Nửa dưới (Cặp đôi ngồi quán ăn ấm áp tựa vào nhau)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 12 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-13" data-index="12">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">03. TUYẾN NHÂN VẬT & TÂM LÝ</div>
+                    <h2 class="slide-title">NHÂN VẬT NAM: NGƯỜI MẮC KẸT TRONG KÝ ỨC</h2>
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Tính cách cốt lõi</strong><p>Nhạy cảm, nội tâm, sống thiên về cảm xúc và gắn chặt với hoài niệm quá khứ.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Mâu thuẫn tâm lý</strong><p>Luôn lấy sự nồng nhiệt thuở ban đầu làm chuẩn mực, không chấp nhận việc tình yêu chuyển sang dạng thức mới.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Điểm mù nhận thức</strong><p>Vì mải chìm trong kỳ vọng bản thân mà vô tình biến thành người quan sát thụ động, không nhận ra những nỗ lực thầm lặng của đối phương.</p></div>
+                    </div>
+                </div>
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 23 (Cận mặt nam diễn viên, áo đen, tay che trán)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/male_forehead.jpg" alt="NHÂN VẬT NAM: NGƯỜI MẮC KẸT TRONG KÝ ỨC" loading="lazy">
+                        <span class="img-caption">Trang 23 (Cận mặt nam diễn viên, áo đen, tay che trán)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 13 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-14" data-index="13">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">03. TUYẾN NHÂN VẬT & TÂM LÝ</div>
+                    <h2 class="slide-title">DIỄN BIẾN TÂM LÝ NHÂN VẬT NAM</h2>
+                    <p class="slide-headline">Hành trình biến chuyển từ ngơ ngác đến cô độc cùng cực</p>
+                    <div class="flow-track">
+                        
+                <div class="flow-step">
+                    <div class="step-circle">1</div>
+                    <div class="step-text">
+                        <strong>Băn khoăn</strong>
+                        <span>Nhận thấy sự đổi khác</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-text">
+                        <strong>Hoài niệm</strong>
+                        <span>Trốn vào miền ký ức</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-text">
+                        <strong>Kỳ vọng</strong>
+                        <span>Nỗ lực hàn gắn chốn cũ</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">4</div>
+                    <div class="step-text">
+                        <strong>Thất vọng</strong>
+                        <span>Mâu thuẫn không lời</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">5</div>
+                    <div class="step-text">
+                        <strong>Cô đơn</strong>
+                        <span>Gục ngã trong lặng câm</span>
+                    </div>
+                </div>
+            
+                    </div>
+                    <p class="flow-desc">Đường dây tâm lý của nhân vật nam di chuyển theo đường dốc xuống, thể hiện sự bế tắc của một người đàn ông yêu sâu đậm nhưng bất lực trong việc giao tiếp.</p>
+                    <div class="doc-ref-badge">Visual Source: Trang 21 (Cận mặt nam diễn viên, ánh mắt trầm tư chất chứa)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/male_pensive.jpg" alt="DIỄN BIẾN TÂM LÝ NHÂN VẬT NAM" loading="lazy">
+                        <span class="img-caption">Trang 21 (Cận mặt nam diễn viên, ánh mắt trầm tư chất chứa)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 14 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-15" data-index="14">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">03. TUYẾN NHÂN VẬT & TÂM LÝ</div>
+                    <h2 class="slide-title">NHÂN VẬT NỮ: NGƯỜI VẪN YÊU NHƯNG KHÔNG ĐƯỢC THẤU HIỂU</h2>
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Tính cách cốt lõi</strong><p>Dịu dàng, thực tế, nội tâm kiên định và đầy lòng trắc ẩn.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Sự chuyển đổi</strong><p>Tình yêu theo thời gian không còn phô diễn bằng lời nồng thắm mà hóa thành sự chăm sóc, chia sẻ gánh nặng cuộc sống.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Tổn thương giấu kín</strong><p>Vừa chịu áp lực công việc, vừa cô đơn khi người yêu hiểu lầm sự im lặng của mình thành thái độ lạnh nhạt.</p></div>
+                    </div>
+                </div>
+                    
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 25 (Cô gái áo trắng, cúi đầu nhìn xuống đượm buồn)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/female_white_down.jpg" alt="NHÂN VẬT NỮ: NGƯỜI VẪN YÊU NHƯNG KHÔNG ĐƯỢC THẤU HIỂU" loading="lazy">
+                        <span class="img-caption">Trang 25 (Cô gái áo trắng, cúi đầu nhìn xuống đượm buồn)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 15 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-16" data-index="15">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">03. TUYẾN NHÂN VẬT & TÂM LÝ</div>
+                    <h2 class="slide-title">DIỄN BIẾN TÂM LÝ NHÂN VẬT NỮ</h2>
+                    <p class="slide-headline">Hành trình cam chịu, tổn thương và lắng đọng</p>
+                    <div class="flow-track">
+                        
+                <div class="flow-step">
+                    <div class="step-circle">1</div>
+                    <div class="step-text">
+                        <strong>Quan tâm</strong>
+                        <span>Chăm sóc bằng hành động</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">2</div>
+                    <div class="step-text">
+                        <strong>Nhận ra khoảng cách</strong>
+                        <span>Cảm giác người yêu xa lạ</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">3</div>
+                    <div class="step-text">
+                        <strong>Tổn thương</strong>
+                        <span>Bị ngộ nhận là vô tâm</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">4</div>
+                    <div class="step-text">
+                        <strong>Im lặng</strong>
+                        <span>Thu mình vào thế giới riêng</span>
+                    </div>
+                </div>
+            
+                <div class="flow-step">
+                    <div class="step-circle">5</div>
+                    <div class="step-text">
+                        <strong>Hoài niệm</strong>
+                        <span>Tìm lại sự kết nối sâu thẳm</span>
+                    </div>
+                </div>
+            
+                    </div>
+                    <p class="flow-desc">Tâm lý nhân vật nữ là mạch ngầm chảy ngược với chàng trai: bề ngoài bình thản, lạnh nhạt nhưng bên trong là sự quan tâm bền bỉ và nỗi đau không được sẻ chia.</p>
+                    <div class="doc-ref-badge">Visual Source: Trang 24 (Cô gái áo đỏ che ô nhìn xa xăm hoài niệm)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/female_red_umbrella.jpg" alt="DIỄN BIẾN TÂM LÝ NHÂN VẬT NỮ" loading="lazy">
+                        <span class="img-caption">Trang 24 (Cô gái áo đỏ che ô nhìn xa xăm hoài niệm)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 16 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-17" data-index="16">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">03. TUYẾN NHÂN VẬT & TÂM LÝ</div>
+                    <h2 class="slide-title">MỐI QUAN HỆ GIỮA HAI NHÂN VẬT</h2>
+                    <p class='slide-headline'>Đối lập trong cảm nhận nhưng tương đồng trong chiều sâu cảm xúc</p>
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Bản chất mâu thuẫn</strong><p>Không có ai đúng hay sai; mâu thuẫn nảy sinh từ sự lệch pha trong cách biểu đạt tình cảm.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Khát khao chung</strong><p>Cả hai đều hướng về đối phương, đều mong muốn được ôm ấp và thấu cảm vẹn toàn.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Rào cản lớn nhất</strong><p>Sự im lặng và định kiến cá nhân đã biến những thói quen đời thường thành vực thẳm cách ngăn.</p></div>
+                    </div>
+                </div>
+                    
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 14 Góc trên (Hai người ngồi chung bàn nhưng ánh mắt xa xôi)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/p14_top_wide.jpg" alt="MỐI QUAN HỆ GIỮA HAI NHÂN VẬT" loading="lazy">
+                        <span class="img-caption">Trang 14 Góc trên (Hai người ngồi chung bàn nhưng ánh mắt xa xôi)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 17 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-18" data-index="17">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">04. ĐỊNH HƯỚNG HÌNH ẢNH & THỊ GIÁC</div>
+                    <h2 class="slide-title">ĐỊNH HƯỚNG HÌNH ẢNH: MÀU SẮC CHỦ ĐẠO</h2>
+                    <p class="slide-headline">Hệ thống màu sắc phân tách hai miền không-thời gian</p>
+                    <div class="color-tiers-stack">
+                        
+                <div class="color-tier-card tier-0">
+                    <div class="color-tier-header">
+                        <span class="color-tier-badge">HIỆN TẠI</span>
+                        <span class="color-tier-codes">Xanh xám (#7B8B8E) • Ghi lạnh (#E5E5E5) • Trắng ngà (#F9F9F6)</span>
+                    </div>
+                    <p class="color-tier-desc">Độ bão hòa thấp, tông lạnh gợi cảm giác trống trải, cô độc và xa cách.</p>
+                </div>
+            
+                <div class="color-tier-card tier-1">
+                    <div class="color-tier-header">
+                        <span class="color-tier-badge">QUÁ KHỨ</span>
+                        <span class="color-tier-codes">Vàng nắng (#E4A853) • Cam nhạt (#D98C61) • Nâu vintage (#8B6B58)</span>
+                    </div>
+                    <p class="color-tier-desc">Tông ấm rực rỡ, gợi cảm xúc ngọt ngào, hoài niệm và sự nồng nàn ban sơ.</p>
+                </div>
+            
+                <div class="color-tier-card tier-2">
+                    <div class="color-tier-header">
+                        <span class="color-tier-badge">ĐOẠN KẾT</span>
+                        <span class="color-tier-codes">Be trầm • Nâu xám • Trắng ấm</span>
+                    </div>
+                    <p class="color-tier-desc">Sự dung hòa tự nhiên, mang đến cảm giác chân thực, thấu cảm và lắng đọng.</p>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 16 (Màu lạnh) & Trang 30 (Màu ấm)</div>
+                </div>
+                <div class="col-right dual-vertical">
+                    <div class="img-frame half">
+                        <img src="assets/walk_night.jpg" alt="Hiện tại (Lạnh)" loading="lazy">
+                        <span class="img-caption">Hiện tại: Tông lạnh / Trầm mặc</span>
+                    </div>
+                    <div class="img-frame half">
+                        <img src="assets/field_golden.jpg" alt="Quá khứ (Ấm)" loading="lazy">
+                        <span class="img-caption">Quá khứ: Nắng vàng / Ấm áp</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 18 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-19" data-index="18">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">04. ĐỊNH HƯỚNG HÌNH ẢNH & THỊ GIÁC</div>
+                    <h2 class="slide-title">ĐỊNH HƯỚNG HÌNH ẢNH: ÁNH SÁNG & KHÔNG KHÍ</h2>
+                    <p class='slide-headline'>Thiết kế ánh sáng kể chuyện (Cinematic Lighting Design)</p>
+                    
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Hiện tại</strong><p>Sử dụng ánh sáng tự nhiên yếu, nguồn sáng phụ xuyên qua cửa sổ mưa, bóng đổ sâu tạo bầu không khí tĩnh lặng, u buồn.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Quá khứ</strong><p>Ánh sáng vàng tự nhiên, nắng chiều xiên và hiệu ứng ngược sáng (Golden Hour Backlight) tạo chất thơ bay bổng, ấm áp.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Đoạn kết</strong><p>Ánh sáng dịu nhẹ, trung tính, tập trung tiêu điểm vào đôi mắt và bóng phản chiếu trên khung cửa kính.</p></div>
+                    </div>
+                </div>
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 19 Nửa dưới (Ánh sáng ấm chiếu qua cửa kính quán cafe)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_sunlight.jpg" alt="ĐỊNH HƯỚNG HÌNH ẢNH: ÁNH SÁNG & KHÔNG KHÍ" loading="lazy">
+                        <span class="img-caption">Trang 19 Nửa dưới (Ánh sáng ấm chiếu qua cửa kính quán cafe)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 19 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-20" data-index="19">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">04. ĐỊNH HƯỚNG HÌNH ẢNH & THỊ GIÁC</div>
+                    <h2 class="slide-title">ĐỊNH HƯỚNG HÌNH ẢNH: KHUNG HÌNH & GÓC MÁY</h2>
+                    <p class='slide-headline'>Phân cấp cỡ cảnh phục vụ biểu đạt tâm lý nhân vật</p>
+                    
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Toàn cảnh (Wide Shot)</strong><p>Nhấn mạnh khoảng cách vật lý và sự trơ trọi của con người giữa không gian rộng lớn.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Trung cảnh (Medium Shot)</strong><p>Khắc họa các hành vi sinh hoạt đời thường và sự ngập ngừng trong tương tác cơ thể.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Cận cảnh (Close-up)</strong><p>Bắt trọn vi biểu cảm trên khuôn mặt: ánh mắt trăn trở, khóe môi gượng gạo.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Đặc tả (Extreme Close-up)</strong><p>Tôn vinh các chi tiết biết nói: ngón tay buông lơi, tách trà nóng bốc khói, màn hình điện thoại.</p></div>
+                    </div>
+                </div>
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 18 (Trung cảnh bàn ăn gỗ mộc)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/diner_wide.jpg" alt="ĐỊNH HƯỚNG HÌNH ẢNH: KHUNG HÌNH & GÓC MÁY" loading="lazy">
+                        <span class="img-caption">Trang 18 (Trung cảnh bàn ăn gỗ mộc)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 20 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-21" data-index="20">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">04. ĐỊNH HƯỚNG HÌNH ẢNH & THỊ GIÁC</div>
+                    <h2 class="slide-title">MOTIF HÌNH ẢNH XUYÊN SUỐT</h2>
+                    <p class='slide-headline'>Bốn biểu tượng thị giác mang tính ẩn dụ cao</p>
+                    
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Điện thoại</strong><p>Biểu tượng của sự chờ đợi, áp lực công việc và rào cản kết nối vô hình giữa hai người.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Cửa sổ kính</strong><p>Ranh giới ngăn cách giữa thế giới nội tâm khép kín và thành phố rộng lớn bên ngoài.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Bàn tay</strong><p>Đại diện cho cử chỉ quan tâm thầm lặng — từ cái siết tay thuở đầu đến bàn tay mỏi nhừ sau ca làm.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Ánh mắt</strong><p>Tấm gương phản chiếu những tâm tư giấu kín, những điều không thể thổ lộ thành lời.</p></div>
+                    </div>
+                </div>
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 20 (Cận cảnh chiếc điện thoại sáng màn hình trên bàn)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/p20_phone_detail.jpg" alt="MOTIF HÌNH ẢNH XUYÊN SUỐT" loading="lazy">
+                        <span class="img-caption">Trang 20 (Cận cảnh chiếc điện thoại sáng màn hình trên bàn)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 21 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-22" data-index="21">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">04. ĐỊNH HƯỚNG HÌNH ẢNH & THỊ GIÁC</div>
+                    <h2 class="slide-title">PHONG CÁCH KỂ CHUYỆN</h2>
+                    <p class="slide-headline">Thủ pháp điện ảnh phi tuyến tính & Chuyển đổi điểm nhìn</p>
+                    <div class="bullets-stack">
+                        
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Cấu trúc phi tuyến tính</strong>
+                        <p>Đan cài song song giữa thực tại xám lạnh và hồi ức rực rỡ nhằm kích thích sự so sánh cảm xúc.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Chuyển đổi điểm nhìn (Perspective Shift)</strong>
+                        <p>Bẻ ngoặt góc máy ở đoạn cao trào, giải mã toàn bộ những hiểu lầm bằng góc nhìn của cô gái.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Kết thúc mở (Open Ending)</strong>
+                        <p>Không áp đặt kết cục hạnh phúc hay chia tay, để lại dư âm suy ngẫm cho mỗi khán giả.</p>
+                    </div>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 17 (Nửa trên Màu ấm & Nửa dưới Màu lạnh)</div>
+                </div>
+                <div class="col-right dual-horizontal">
+                    <div class="img-frame half">
+                        <img src="assets/walk_golden.jpg" alt="Miền ký ức vàng ấm" loading="lazy">
+                        <span class="img-caption">Miền ký ức vàng ấm</span>
+                    </div>
+                    <div class="img-frame half">
+                        <img src="assets/walk_night.jpg" alt="Thực tại xám lạnh" loading="lazy">
+                        <span class="img-caption">Thực tại xám lạnh</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 22 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-23" data-index="22">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 01</span>
+                        <span class="scene-tc">00:00 – 00:24</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Intro nhạc nền + “Kìa màn đêm hiu hắt mang tên em…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Căn hộ về đêm. Chàng trai ngồi bên bàn gỗ nhìn ra cửa sổ mưa rơi bên ngoài. Cô gái bước qua, lẳng lặng đặt cốc nước xuống bàn rồi rời đi không một lời nói.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Trung cảnh rộng => Trung cảnh; Ánh đèn vàng yếu, tông lạnh xanh xám, nhịp máy tĩnh lặng.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 14 Góc trên bên trái (Nam ngồi bàn, nữ đứng)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/p14_top_wide.jpg" alt="CẢNH 01" loading="lazy">
+                        <span class="img-caption">Trang 14 Góc trên bên trái (Nam ngồi bàn, nữ đứng)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 23 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-24" data-index="23">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 02</span>
+                        <span class="scene-tc">00:24 – 00:47</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">“Quay về trong ký ức của anh qua thời gian…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Chàng trai nhìn cô gái với ánh mắt xa lạ và trầm tư. Cô gái ngồi sofa mải miết lướt điện thoại. Chàng trai quay mặt ra cửa sổ, miền ký ức bắt đầu ùa về.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Cận cảnh ánh mắt nam + Góc quay qua vai; Tông lạnh xám, ánh sáng mờ từ màn hình.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 14 Góc dưới bên trái (Nam nhìn nữ đang xem điện thoại)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/p14_bottom_left.jpg" alt="CẢNH 02" loading="lazy">
+                        <span class="img-caption">Trang 14 Góc dưới bên trái (Nam nhìn nữ đang xem điện thoại)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 24 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-25" data-index="24">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 03</span>
+                        <span class="scene-tc">00:47 – 01:20</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Pre-Chorus: “Này gió đừng hát và mang nỗi nhớ chạy đi…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Chàng trai bước ra ban công, gió đêm lạnh thổi bay vạt áo. Anh nhớ lại ngày đầu gặp nhau. Phía trong phòng khách, cô gái ngồi trên sofa ngước nhìn theo bóng lưng anh.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Toàn cảnh ban công + Cận cảnh đôi tay bám lan can; Ánh sáng thành phố xa mờ, tông xanh lạnh.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 14 Góc dưới bên phải (Bóng lưng nam đứng ngoài ban công)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/p14_balcony.jpg" alt="CẢNH 03" loading="lazy">
+                        <span class="img-caption">Trang 14 Góc dưới bên phải (Bóng lưng nam đứng ngoài ban công)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 25 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-26" data-index="25">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 04</span>
+                        <span class="scene-tc">01:20 – 01:50</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Chorus 1: “Lạ lùng em tới… mà bao say mê ngỡ như trọn vẹn…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Match cut chuyển sang Phần 2 (Hồi ức). Cô gái nở nụ cười rạng rỡ, chủ động chạy đến nắm lấy tay anh. Cả hai rảo bước dưới con đường ngập tràn sắc vàng ấm áp.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Cận cảnh mềm mại chuyển sang Trung cảnh 2 người; Ánh sáng hoàng hôn golden hour, tông cam vàng rực rỡ.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 17 Nửa trên (2 người đi bộ dưới nắng ấm áp)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/walk_golden.jpg" alt="CẢNH 04" loading="lazy">
+                        <span class="img-caption">Trang 17 Nửa trên (2 người đi bộ dưới nắng ấm áp)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 26 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-27" data-index="26">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 05</span>
+                        <span class="scene-tc">01:50 – 02:20</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Post-Chorus 1: “Kìa nắng ngập tràn… Nhắn gửi em…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Chàng trai đưa cô gái trở lại quán ăn kỷ niệm xưa. Anh hào hứng nhìn cô, nhưng cô gái mệt mỏi liên tục check tin nhắn công việc. Chàng trai hụt hẫng, lẳng lặng cụp mắt quay đi.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Trung cảnh dải bàn ăn đối diện; Cận cảnh biểu cảm hụt hẫng; Ánh sáng quán mờ tối, tạo bóng đổ ngăn cách.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 20 (Cảnh quán cafe tối, cô gái mải xem điện thoại)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_phone.jpg" alt="CẢNH 05" loading="lazy">
+                        <span class="img-caption">Trang 20 (Cảnh quán cafe tối, cô gái mải xem điện thoại)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 27 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-28" data-index="27">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 06</span>
+                        <span class="scene-tc">02:20 – 02:50</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Verse 2: “Kìa màn đêm hiu hắt mang tên em…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Hai người đi bộ về trong đêm vắng. Chàng trai cố với tay nắm lấy tay cô gái nhưng các ngón tay cô lỏng lẻo vì mệt mỏi. Chàng trai từ từ buông tay, khoảng cách như bờ vực thẳm.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Toàn cảnh đường phố đêm + Cận cảnh hai bàn tay tách rời; Đèn đường ngả vàng, bóng hai người rẽ đôi.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 17 Nửa dưới (2 người đi bộ đêm, ánh sáng lạnh, xa cách)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/walk_night.jpg" alt="CẢNH 06" loading="lazy">
+                        <span class="img-caption">Trang 17 Nửa dưới (2 người đi bộ đêm, ánh sáng lạnh, xa cách)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 28 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-29" data-index="28">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 07</span>
+                        <span class="scene-tc">02:50 – 03:25</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Pre-Chorus 2: “Này gió đừng hát… Mưa thôi rơi trên từng góc phố…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Trở về căn hộ. Chàng trai ngồi gục trên sofa trong cảm giác tuyệt vọng. Cô gái bước vào phòng ngủ, khựng lại ngoảnh nhìn anh với ánh mắt đau đáu rồi từ từ khép cánh cửa.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Góc quay xa từ góc phòng nhấn mạnh sự trống trải; Cận cảnh ánh nhìn đau đáu; Tông xám xanh lạnh lẽo.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 15 (Cảnh phòng khách tối, nam ngồi một mình trên sofa)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/apt_sofa_alone.jpg" alt="CẢNH 07" loading="lazy">
+                        <span class="img-caption">Trang 15 (Cảnh phòng khách tối, nam ngồi một mình trên sofa)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 29 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-30" data-index="29">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 08 (CAO TRÀO)</span>
+                        <span class="scene-tc">03:25 – 03:55</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Chorus 2: “Lạ lùng em tới… Hãy để anh được ôm lấy em…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Cú chuyển góc nhìn sang cô gái: Cốc nước đầu phim là trà gừng cô ân cần pha cho anh; điện thoại là tìm món giải rượu và thuốc dạ dày; bàn tay mỏi nhừ sau ngày dài làm việc vì tương lai.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Góc máy Handheld di chuyển mềm mại, cận cảnh ánh mắt và nụ cười thầm lặng; Tông màu ấm dần lên dịu dàng.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 19 Nửa trên (Cận cảnh nữ nhìn nam đong đầy yêu thương)</div>
+                </div>
+                
+                <div class="col-right dual-horizontal">
+                    <div class="img-frame half">
+                        <img src="assets/cafe_couple_tender.jpg" alt="CẢNH 08 (CAO TRÀO)" loading="lazy">
+                        <span class="img-caption">Trang 19 • Ánh nhìn âu yếm</span>
+                    </div>
+                    <div class="img-frame half">
+                        <img src="assets/tea_ginger.jpg" alt="Tách trà gừng" loading="lazy">
+                        <span class="img-caption">Đặc tả: Tách trà gừng thầm lặng</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 30 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-31" data-index="30">
+            
+            <div class="slide-inner split-layout scene-layout">
+                <div class="col-left">
+                    <div class="scene-header">
+                        <span class="scene-pill">CẢNH 09 (KẾT)</span>
+                        <span class="scene-tc">03:55 – 04:22</span>
+                    </div>
+                    <div class="scene-lyric-box">
+                        <span class="sub-label">ĐOẠN NHẠC / LỜI BÀI HÁT</span>
+                        <p class="scene-lyric">Post-Chorus cuối + Fade out: “Kìa nắng ngập tràn… Nhắn gửi em…”</p>
+                    </div>
+                    <div class="scene-action-box">
+                        <span class="sub-label">HÀNH ĐỘNG & DIỄN XUẤT</span>
+                        <p class="scene-action">Cô gái nhẹ nhàng đắp áo khoác ấm lên vai chàng trai. Chàng trai giật mình tỉnh giấc, nhìn thấy hình ảnh cô qua bóng phản chiếu trên khung kính. Ánh mắt giao thoa thấu cảm. Mờ dần.</p>
+                    </div>
+                    <div class="scene-camera-box">
+                        <span class="sub-label">CỠ CẢNH / GÓC MÁY / ÁNH SÁNG</span>
+                        <p class="scene-camera">Cận cảnh bóng phản chiếu trên kính + Trung cảnh hai người tựa đầu vào nhau; Ánh đèn vàng ấm áp, chuyển tiếp từ lạnh sang ấm.</p>
+                    </div>
+                    <div class="doc-ref-badge">Storyboard Visual: Trang 18 Nửa dưới (Cặp đôi ngồi quán ăn tựa vào nhau thấu cảm)</div>
+                </div>
+                
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/diner_couple_lean.jpg" alt="CẢNH 09 (KẾT)" loading="lazy">
+                        <span class="img-caption">Trang 18 Nửa dưới (Cặp đôi ngồi quán ăn tựa vào nhau thấu cảm)</span>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 31 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-32" data-index="31">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">06. PHƯƠNG ÁN SẢN XUẤT</div>
+                    <h2 class="slide-title">DIỄN VIÊN ĐỀ XUẤT: NHÂN VẬT NAM</h2>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                <div class="cast-badge-box">
+                    <span class="cast-name">QUỐC ANH</span>
+                    <span class="cast-age">25 – 30 tuổi</span>
+                </div>
+                <div class="bullets-stack">
+                    
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Ngoại hình & Khí chất</strong><p>Gương mặt sáng, đường nét thanh tú, tóc đen tự nhiên, phong cách tối giản thanh lịch.</p></div>
+                    </div>
+                    
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Phong thái biểu cảm</strong><p>Trầm tĩnh, có chiều sâu, tạo cảm giác một người đàn ông chất chứa nhiều suy tư và giàu nội cảm.</p></div>
+                    </div>
+                    
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Khả năng diễn xuất</strong><p>Lột tả trọn vẹn những xung đột nội tâm qua ánh mắt, bờ môi và những cử chỉ vi tế mà không cần đối thoại.</p></div>
+                    </div>
+                    
+                </div>
+                
+                    <div class="doc-ref-badge">Visual Source: Trang 21 (Cận mặt Quốc Anh phong thái sâu lắng)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/actor_quoc_anh_suit.jpg" alt="DIỄN VIÊN ĐỀ XUẤT: NHÂN VẬT NAM" loading="lazy">
+                        <span class="img-caption">Trang 21 (Cận mặt Quốc Anh phong thái sâu lắng)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 32 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-33" data-index="32">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">06. PHƯƠNG ÁN SẢN XUẤT</div>
+                    <h2 class="slide-title">DIỄN VIÊN ĐỀ XUẤT: NHÂN VẬT NỮ</h2>
+                    <p class="slide-headline"></p>
+                    <div class="bullets-stack">
+                        
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Ngoại hình & Khí chất</strong>
+                        <p>Nét đẹp thuần khiết, dịu dàng nhưng độc lập; gương mặt mềm mại, nụ cười trong trẻo.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Đa tầng cảm xúc</strong>
+                        <p>Thể hiện nhuần nhuyễn hai lớp cảm xúc: sự hồn nhiên nồng nhiệt trong ký ức và nét mệt mỏi, thu mình ở hiện tại.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Chiều sâu nhân vật</strong>
+                        <p>Đem lại sự đồng cảm tuyệt đối cho người xem khi hé lộ góc nhìn hy sinh thầm lặng của người phụ nữ.</p>
+                    </div>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 13 (Tạo hình trái tim) & Trang 28 (Cardigan be)</div>
+                </div>
+                <div class="col-right dual-horizontal">
+                    <div class="img-frame half">
+                        <img src="assets/actress_heart.jpg" alt="Quá khứ: Hồn nhiên, rạng rỡ" loading="lazy">
+                        <span class="img-caption">Quá khứ: Hồn nhiên, rạng rỡ</span>
+                    </div>
+                    <div class="img-frame half">
+                        <img src="assets/actress_beige_cardigan.jpg" alt="Hiện tại: Dịu dàng, thu mình" loading="lazy">
+                        <span class="img-caption">Hiện tại: Dịu dàng, thu mình</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 33 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-34" data-index="33">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">06. PHƯƠNG ÁN SẢN XUẤT</div>
+                    <h2 class="slide-title">ĐỀ XUẤT HỆ THỐNG BỐI CẢNH</h2>
+                    <p class="slide-headline">Ba không gian mang tính ẩn dụ thị giác cốt lõi</p>
+                    <div class="bullets-stack">
+                        
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Bối cảnh 1: Căn hộ chung (Chính)</strong>
+                        <p>Nội thất tối giản, tone xám lạnh; nơi hai người bên nhau nhưng tồn tại khoảng cách vật lý và tâm lý sâu sắc.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Bối cảnh 2: Con đường quen</strong>
+                        <p>Hàng cây dài thẳng tắp; ẩn dụ cho hành trình tình yêu từng đồng hành nhưng dần lệch nhịp bước chân.</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Bối cảnh 3: Quán ăn kỷ niệm</strong>
+                        <p>Bàn gỗ mộc, cửa kính ngập tràn ánh sáng; chiếc neo thời gian dùng để đo đếm sự đổi thay cảm xúc qua hai thời kỳ.</p>
+                    </div>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 18 (Toàn cảnh quán ăn gỗ) & Trang 16 (Cửa sổ mưa)</div>
+                </div>
+                <div class="col-right dual-horizontal">
+                    <div class="img-frame half">
+                        <img src="assets/diner_wide.jpg" alt="Bối cảnh 1: Quán ăn kỷ niệm" loading="lazy">
+                        <span class="img-caption">Bối cảnh 1: Quán ăn kỷ niệm</span>
+                    </div>
+                    <div class="img-frame half">
+                        <img src="assets/apt_rain_window.jpg" alt="Bối cảnh 2: Cửa sổ mưa căn hộ" loading="lazy">
+                        <span class="img-caption">Bối cảnh 2: Cửa sổ mưa căn hộ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 34 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-35" data-index="34">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">06. PHƯƠNG ÁN SẢN XUẤT</div>
+                    <h2 class="slide-title">PHỤC TRANG & TẠO HÌNH (COSTUME DESIGN)</h2>
+                    <p class="slide-headline">Sự chuyển biến trang phục và các chi tiết xuyên suốt</p>
+                    <div class="bullets-stack">
+                        
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Nam: Quá khứ > Hiện tại</strong>
+                        <p>Từ áo len kem, sơ mi sáng màu, sneaker trắng (cởi mở) chuyển sang áo len xám than, áo khoác navy, quần âu tối màu (thu mình).</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Nữ: Quá khứ > Hiện tại</strong>
+                        <p>Từ cardigan trắng ngà, chân váy hồng pastel (trong trẻo) chuyển sang sơ mi trắng, cardigan xám xanh, denim sẫm (trưởng thành, thực tế).</p>
+                    </div>
+                </div>
+            
+                <div class="bullet-block">
+                    <span class="bullet-dot"></span>
+                    <div>
+                        <strong>Chi tiết xuyên suốt</strong>
+                        <p>Chiếc kẹp tóc của nữ và đồng hồ của nam — những vật chứng tình yêu bất biến kết nối quá khứ và thực tại.</p>
+                    </div>
+                </div>
+            
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 22 (Nam quá khứ) & Trang 23 (Nam hiện tại) & Trang 26 (Nữ hiện tại)</div>
+                </div>
+                <div class="col-right triple-gallery">
+                    
+                <div class="img-frame triple">
+                    <img src="assets/costume_male_past.jpg" alt="Nam quá khứ" loading="lazy">
+                    <span class="img-caption">Nam quá khứ</span>
+                </div>
+            
+                <div class="img-frame triple">
+                    <img src="assets/costume_male_present.jpg" alt="Nam hiện tại" loading="lazy">
+                    <span class="img-caption">Nam hiện tại</span>
+                </div>
+            
+                <div class="img-frame triple">
+                    <img src="assets/costume_female_present.jpg" alt="Nữ hiện tại" loading="lazy">
+                    <span class="img-caption">Nữ hiện tại</span>
+                </div>
+            
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 35 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-cool " id="slide-36" data-index="35">
+            
+            <div class="slide-inner split-layout">
+                <div class="col-left">
+                    <div class="section-tag">06. PHƯƠNG ÁN SẢN XUẤT</div>
+                    <h2 class="slide-title">NGÔN NGỮ MÁY QUAY & CHUYỂN CẢNH</h2>
+                    <p class='slide-headline'>Thủ pháp quay dựng định hình phong cách điện ảnh Indie</p>
+                    
+                    
+                    
+                    
+                    <div class='bullets-stack'>
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Góc nhìn Nam</strong><p>Trung cảnh, cận cảnh ánh mắt, góc qua vai và khuôn hình có vật cản tiền cảnh nhằm giới hạn thông tin, gia tăng cảm giác cô độc.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Hồi ức</strong><p>Góc máy linh hoạt, chuyển động mềm theo bước chân, cận cảnh bàn tay chạm nhau và nụ cười rạng rỡ.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Góc nhìn Nữ</strong><p>Máy quay cầm tay (Handheld) tạo độ rung tự nhiên, ấm áp, gắn kết trực tiếp với hơi thở nhân vật.</p></div>
+                    </div>
+                
+                    <div class="bullet-block">
+                        <span class="bullet-dot"></span>
+                        <div><strong>Kỹ thuật dựng</strong><p>Match cut bàn tay, Chuyển cảnh qua vật thể (khung cửa, bóng người), Phản chiếu qua gương kính và Lặp lại khuôn hình.</p></div>
+                    </div>
+                </div>
+                    
+                    <div class="doc-ref-badge">Visual Source: Trang 19 Nửa dưới (Không gian quán cafe, chiều sâu khung hình)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/cafe_sunlight.jpg" alt="NGÔN NGỮ MÁY QUAY & CHUYỂN CẢNH" loading="lazy">
+                        <span class="img-caption">Trang 19 Nửa dưới (Không gian quán cafe, chiều sâu khung hình)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 36 / 37</span>
+            </div>
+        </div>
+        
+        <div class="slide theme-warm " id="slide-37" data-index="36">
+            
+            <div class="slide-inner split-layout the-end-layout">
+                <div class="col-left">
+                    <div class="section-tag">07. LỜI KẾT • THE END</div>
+                    <h2 class="slide-title">LIỆU HỌ CÓ THỂ NHẬN RA TÌNH YÊU VẪN ĐANG TỒN TẠI?</h2>
+                    <p class="end-quote">“Một tác phẩm không phán xét đúng sai, chỉ mong gợi nhắc mỗi người hãy dừng lại một nhịp để nhìn vào mắt người thương.”</p>
+                    <div class="end-thanks">
+                        <span>CẢM ƠN HỘI ĐỒNG VÀ KHÁN GIẢ ĐÃ LẮNG NGHE</span>
+                        <p>KẾ HOẠCH SẢN XUẤT MV • LẠ LÙNG (VŨ)</p>
+                    </div>
+                    <div class="doc-ref-badge">Visual Source: Trang 30 (Cánh đồng nắng vàng - ẩn dụ cho sự thấu cảm và hy vọng)</div>
+                </div>
+                <div class="col-right">
+                    <div class="img-frame single">
+                        <img src="assets/field_golden.jpg" alt="LIỆU HỌ CÓ THỂ NHẬN RA TÌNH YÊU VẪN ĐANG TỒN TẠI?" loading="lazy">
+                        <span class="img-caption">Trang 30 (Cánh đồng nắng vàng - ẩn dụ cho sự thấu cảm và hy vọng)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide-footer">
+                <span class="footer-project">MV "LẠ LÙNG" (VŨ) • PRODUCTION PLAN</span>
+                <span class="footer-count">SLIDE 37 / 37</span>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- HUD Navigation Controls -->
+    <div class="nav-hud">
+        <button class="nav-btn" onclick="prevSlide()" title="Trang trước (←)">‹</button>
+        <span class="slide-counter"><span id="currIndex">01</span> / 37</span>
+        <button class="nav-btn" onclick="nextSlide()" title="Trang sau (→)">›</button>
+        <button class="drawer-toggle" onclick="toggleDrawer()">MỤC LỤC (37)</button>
+        <button class="nav-btn" onclick="toggleFullScreen()" title="Toàn màn hình (F)">⛶</button>
+    </div>
+
+    <!-- Slide Index Modal -->
+    <div class="drawer-modal" id="drawerModal">
+        <div class="drawer-header">
+            <h3>TỔNG MỤC LỤC BÀI THUYẾT TRÌNH (37 SLIDES)</h3>
+            <button class="drawer-close" onclick="toggleDrawer()">✕</button>
+        </div>
+        <div class="drawer-grid">
+            
+        <div class="drawer-item" onclick="jumpToSlide(0)" id="thumb-0">
+            <span class="thumb-num">01</span>
+            <span class="thumb-title">LẠ LÙNG</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(1)" id="thumb-1">
+            <span class="thumb-num">02</span>
+            <span class="thumb-title">THÔNG TIN BÀI HÁT</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(2)" id="thumb-2">
+            <span class="thumb-num">03</span>
+            <span class="thumb-title">LÝ DO LỰA CHỌN BÀI HÁT</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(3)" id="thumb-3">
+            <span class="thumb-num">04</span>
+            <span class="thumb-title">MỤC TIÊU SÁNG TẠO</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(4)" id="thumb-4">
+            <span class="thumb-num">05</span>
+            <span class="thumb-title">CHỦ ĐỀ & THÔNG ĐIỆP CHỦ ĐẠO</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(5)" id="thumb-5">
+            <span class="thumb-num">06</span>
+            <span class="thumb-title">TÓM TẮT CÂU CHUYỆN</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(6)" id="thumb-6">
+            <span class="thumb-num">07</span>
+            <span class="thumb-title">KHOẢNG CÁCH VÔ HÌNH</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(7)" id="thumb-7">
+            <span class="thumb-num">08</span>
+            <span class="thumb-title">CÔ GÁI CỦA NGÀY XƯA</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(8)" id="thumb-8">
+            <span class="thumb-num">09</span>
+            <span class="thumb-title">CỐ TÌM LẠI NHỮNG ĐIỀU ĐÃ QUA</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(9)" id="thumb-9">
+            <span class="thumb-num">10</span>
+            <span class="thumb-title">TƯỞNG CHỪNG ĐÃ MẤT NHAU</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(10)" id="thumb-10">
+            <span class="thumb-num">11</span>
+            <span class="thumb-title">SỰ THẬT TỪ GÓC NHÌN CÔ GÁI</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(11)" id="thumb-11">
+            <span class="thumb-num">12</span>
+            <span class="thumb-title">NGƯỜI THAY ĐỔI CÓ THỂ KHÔNG CHỈ LÀ CÔ</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(12)" id="thumb-12">
+            <span class="thumb-num">13</span>
+            <span class="thumb-title">NHÂN VẬT NAM: NGƯỜI MẮC KẸT TRONG KÝ ỨC</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(13)" id="thumb-13">
+            <span class="thumb-num">14</span>
+            <span class="thumb-title">DIỄN BIẾN TÂM LÝ NHÂN VẬT NAM</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(14)" id="thumb-14">
+            <span class="thumb-num">15</span>
+            <span class="thumb-title">NHÂN VẬT NỮ: NGƯỜI VẪN YÊU NHƯNG KHÔNG ĐƯỢC THẤU HIỂU</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(15)" id="thumb-15">
+            <span class="thumb-num">16</span>
+            <span class="thumb-title">DIỄN BIẾN TÂM LÝ NHÂN VẬT NỮ</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(16)" id="thumb-16">
+            <span class="thumb-num">17</span>
+            <span class="thumb-title">MỐI QUAN HỆ GIỮA HAI NHÂN VẬT</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(17)" id="thumb-17">
+            <span class="thumb-num">18</span>
+            <span class="thumb-title">ĐỊNH HƯỚNG HÌNH ẢNH: MÀU SẮC CHỦ ĐẠO</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(18)" id="thumb-18">
+            <span class="thumb-num">19</span>
+            <span class="thumb-title">ĐỊNH HƯỚNG HÌNH ẢNH: ÁNH SÁNG & KHÔNG KHÍ</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(19)" id="thumb-19">
+            <span class="thumb-num">20</span>
+            <span class="thumb-title">ĐỊNH HƯỚNG HÌNH ẢNH: KHUNG HÌNH & GÓC MÁY</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(20)" id="thumb-20">
+            <span class="thumb-num">21</span>
+            <span class="thumb-title">MOTIF HÌNH ẢNH XUYÊN SUỐT</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(21)" id="thumb-21">
+            <span class="thumb-num">22</span>
+            <span class="thumb-title">PHONG CÁCH KỂ CHUYỆN</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(22)" id="thumb-22">
+            <span class="thumb-num">23</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(23)" id="thumb-23">
+            <span class="thumb-num">24</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(24)" id="thumb-24">
+            <span class="thumb-num">25</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(25)" id="thumb-25">
+            <span class="thumb-num">26</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(26)" id="thumb-26">
+            <span class="thumb-num">27</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(27)" id="thumb-27">
+            <span class="thumb-num">28</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(28)" id="thumb-28">
+            <span class="thumb-num">29</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(29)" id="thumb-29">
+            <span class="thumb-num">30</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(30)" id="thumb-30">
+            <span class="thumb-num">31</span>
+            <span class="thumb-title"></span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(31)" id="thumb-31">
+            <span class="thumb-num">32</span>
+            <span class="thumb-title">DIỄN VIÊN ĐỀ XUẤT: NHÂN VẬT NAM</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(32)" id="thumb-32">
+            <span class="thumb-num">33</span>
+            <span class="thumb-title">DIỄN VIÊN ĐỀ XUẤT: NHÂN VẬT NỮ</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(33)" id="thumb-33">
+            <span class="thumb-num">34</span>
+            <span class="thumb-title">ĐỀ XUẤT HỆ THỐNG BỐI CẢNH</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(34)" id="thumb-34">
+            <span class="thumb-num">35</span>
+            <span class="thumb-title">PHỤC TRANG & TẠO HÌNH (COSTUME DESIGN)</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(35)" id="thumb-35">
+            <span class="thumb-num">36</span>
+            <span class="thumb-title">NGÔN NGỮ MÁY QUAY & CHUYỂN CẢNH</span>
+        </div>
+        
+        <div class="drawer-item" onclick="jumpToSlide(36)" id="thumb-36">
+            <span class="thumb-num">37</span>
+            <span class="thumb-title">LIỆU HỌ CÓ THỂ NHẬN RA TÌNH YÊU VẪN ĐANG TỒN TẠI?</span>
+        </div>
+        
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const currIndexEl = document.getElementById('currIndex');
+        const progressBar = document.getElementById('progressBar');
+        const drawerModal = document.getElementById('drawerModal');
+
+        function updateSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= total) index = total - 1;
+            currentIndex = index;
+
+            slides.forEach((s, idx) => {
+                s.classList.toggle('active', idx === currentIndex);
+            });
+
+            const displayNum = (currentIndex + 1).toString().padStart(2, '0');
+            currIndexEl.textContent = displayNum;
+            progressBar.style.width = ((currentIndex + 1) / total * 100) + '%';
+
+            // Update drawer item highlights
+            document.querySelectorAll('.drawer-item').forEach((item, idx) => {
+                item.classList.toggle('active-item', idx === currentIndex);
+            });
+        }
+
+        function nextSlide() {
+            updateSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            updateSlide(currentIndex - 1);
+        }
+
+        function jumpToSlide(index) {
+            updateSlide(index);
+            drawerModal.classList.remove('open');
+        }
+
+        function toggleDrawer() {
+            drawerModal.classList.toggle('open');
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                drawerModal.classList.remove('open');
+            } else if (e.key === 'f' || e.key === 'F') {
+                toggleFullScreen();
+            } else if (e.key === 'm' || e.key === 'M') {
+                toggleDrawer();
+            }
+        });
+
+        // Touch Swipe Handling
+        let touchStartX = 0;
+        let touchEndX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+
+        updateSlide(0);
+    </script>
+</body>
+</html>
